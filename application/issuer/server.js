@@ -50,8 +50,8 @@ app.post('/api/addbatch', async (req, res) => {
             req.body.dosage,
             req.body.manufacture_date,
             req.body.exprie_date,
-            19,
-            33
+            "19",
+            "33"
         );
         res.status(201).json({ success: true });
     } catch (error) {
