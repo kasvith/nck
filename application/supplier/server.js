@@ -53,7 +53,7 @@ app.post('/api/addbatch', async (req, res) => {
             "19",
             "33"
         );
-        console.log(buyResponse);
+        console.log(buyResponse.toString());
         res.status(201).json({ success: true });
     } catch (error) {
 
