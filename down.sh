@@ -1,3 +1,8 @@
+#!/bin/bash
+#
+
+set -e
+
 echo "DELETING DOCKER CONTAINERS"
 docker container stop $(docker container ls -aq)
 docker container rm $(docker container ls -aq)
@@ -12,4 +17,4 @@ docker image prune -a --force
 echo 'DELETEING CRYPTO FILES'
 cd nck-network
 rm -rf channel-artifacts
-rm -rf crypto-configs
+rm -rf crypto-config
