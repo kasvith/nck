@@ -116,7 +116,7 @@ app.get('/api/find', async (req, res) => {
 });
 
 app.post('/api/transportBatch', async (req, res) => {
-    const { id, organization } = req.body;
+    const { rfid, organization } = req.body;
 
     if (id === '' || organization === '') {
         res.status(500)
@@ -146,9 +146,9 @@ app.post('/api/transportBatch', async (req, res) => {
         await gateway.connect(connectionProfile, connectionOptions);
         const network = await gateway.getNetwork('nckchannel');
         const contract = await network.getContract('nckcc');
-        const buyResponse = await contract.submitTransaction('transferBatch', id, organization);
+        const buyResponse = await contract.submitTransaction('transferBatch', rfid, organization);
 
-        res.status(200).json({message: `transported batch:${id}`})
+        res.status(200).json({message: `transported batch:${rfid}`})
     } catch (error) {
 
         console.log(`Error processing transaction. ${error}`);
