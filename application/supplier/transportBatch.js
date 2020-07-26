@@ -50,7 +50,7 @@ async function main () {
         const network = await gateway.getNetwork('nckchannel');
         const contract = await network.getContract('nckcc');
         const buyResponse = await contract.submitTransaction('transferBatch', '123456789', 'Napez');
-
+        console.log(buyResponse.toString())
     } catch (error) {
 
         console.log(`Error processing transaction. ${error}`);
