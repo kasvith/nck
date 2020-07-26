@@ -118,7 +118,7 @@ app.get('/api/find', async (req, res) => {
 app.post('/api/transportBatch', async (req, res) => {
     const { rfid, organization } = req.body;
 
-    if (id === '' || organization === '') {
+    if (rfid === '' || organization === '') {
         res.status(500)
         return
     }
