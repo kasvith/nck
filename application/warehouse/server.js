@@ -38,6 +38,7 @@ app.post('/api/addbatch', async (req, res) => {
 
         };
 
+
         await gateway.connect(connectionProfile, connectionOptions);
         const network = await gateway.getNetwork('nckchannel');
         const contract = await network.getContract('nckcc');
@@ -115,7 +116,7 @@ app.get('/api/find', async (req, res) => {
     }
 });
 
-app.post('/api/transportBatch', async (req, res) => {
+app.post('/api/deliverBatch', async (req, res) => {
     const { id, organization } = req.body;
 
     if (id === '' || organization === '') {
@@ -130,7 +131,7 @@ app.post('/api/transportBatch', async (req, res) => {
     try {
 
         // Specify userName for network access
-        const userName = 'Admin@supplier.nck.com';
+        const userName = 'Admin@warehouse.nck.com';
 
         // Load connection profile; will be used to locate a gateway
         let connectionProfile = yaml.safeLoad(fs.readFileSync('./gateway/networkConnection.yaml', 'utf8'));
@@ -148,11 +149,12 @@ app.post('/api/transportBatch', async (req, res) => {
         const contract = await network.getContract('nckcc');
         const buyResponse = await contract.submitTransaction('transferBatch', id, organization);
 
-        res.status(200).json({message: `transported batch:${id}`})
+        res.status(200).json({ message: `delivered batch ${id}` })
     } catch (error) {
 
         console.log(`Error processing transaction. ${error}`);
         console.log(error.stack);
+        res.status(400).json({error: error})
 
     } finally {
 
