@@ -2,7 +2,7 @@
 
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 3001
 var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -66,4 +66,4 @@ app.post('/api/deliverBatch', async (req, res) => {
     }
 });
 
-app.listen(port, () => console.log(`Supplier app listening on port ${port}!`))
+app.listen(port, () => console.log(`Warehouse app listening on port ${port}!`))
