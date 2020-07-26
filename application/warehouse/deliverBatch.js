@@ -51,6 +51,7 @@ async function main () {
         const contract = await network.getContract('nckcc');
         const buyResponse = await contract.submitTransaction('transferBatch', '123456789', 'kongez');
 
+        console.log(buyResponse.toString())
     } catch (error) {
 
         console.log(`Error processing transaction. ${error}`);
